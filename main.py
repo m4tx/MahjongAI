@@ -28,7 +28,7 @@ def connect_and_play(ai_obj, opponent_class, user, username, lobbytype, gametype
         return False
 
 
-def run_example_ai():
+def run_example_ai(drawer=None):
     # the OBJECT of your own implemented Mahjong agent
     ai_module = importlib.import_module("agents.random_ai_example")
     ai_class = getattr(ai_module, "RandomAI")
@@ -38,14 +38,34 @@ def run_example_ai():
     player_module = importlib.import_module("client.mahjong_player")
     opponent_class = getattr(player_module, "OpponentPlayer")
 
-    user = "ID696E3BCC-hLHNE8Wf"      # the user ID that you got after having registered in tenhou.net
-    user_name = "tst_tio"      # the user name that you have created while registration in tenhou.net
+    user = "ID1D1017E5-cSJRZYYS"      # the user ID that you got after having registered in tenhou.net
+    user_name = "m4txai"      # the user name that you have created while registration in tenhou.net
 
     game_type = '1'      # '137' 南 '193' 东速高
 
     logger_obj = Logger("log1", user_name)      # two arguments: id of your test epoch, user name
 
-    connect_and_play(ai_obj, opponent_class, user, user_name, '0', game_type, logger_obj)  # play one game
+    connect_and_play(ai_obj, opponent_class, user, user_name, '0', game_type, logger_obj, drawer)  # play one game
+
+
+def run_m4tx_ai(drawer=None):
+    # the OBJECT of your own implemented Mahjong agent
+    ai_module = importlib.import_module("agents.m4tx_ai")
+    ai_class = getattr(ai_module, "M4txAI")
+    ai_obj = ai_class()
+
+    # the CLASS of your extended OpponentPlayer, or the default one in mahjong_player.py
+    player_module = importlib.import_module("client.mahjong_player")
+    opponent_class = getattr(player_module, "OpponentPlayer")
+
+    user = "ID1D1017E5-cSJRZYYS"      # the user ID that you got after having registered in tenhou.net
+    user_name = "m4txai"      # the user name that you have created while registration in tenhou.net
+
+    game_type = '1'      # '137' 南 '193' 东速高
+
+    logger_obj = Logger("log1", user_name)      # two arguments: id of your test epoch, user name
+
+    connect_and_play(ai_obj, opponent_class, user, user_name, '0', game_type, logger_obj, drawer)  # play one game
 
 
 def run_jianyang_ai(drawer=None):
@@ -56,8 +76,8 @@ def run_jianyang_ai(drawer=None):
     ai_obj = ai_class(ensemble_clfs)
     opponent_class = getattr(ai_module, "OppPlayer")
 
-    user = "ID696E3BCC-hLHNE8Wf"  # the user ID that you got after having registered in tenhou.net
-    user_name = "tst_tio"  # the user name that you have created while registration in tenhou.net
+    user = "ID1D1017E5-cSJRZYYS"  # the user ID that you got after having registered in tenhou.net
+    user_name = "m4txai"  # the user name that you have created while registration in tenhou.net
 
     game_type = '1'  # '137' 南 '193' 东速高
 
@@ -67,7 +87,7 @@ def run_jianyang_ai(drawer=None):
 
 
 def main():
-    run_jianyang_ai()
+    run_m4tx_ai()
 
 
 if __name__ == '__main__':

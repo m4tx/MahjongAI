@@ -65,15 +65,15 @@ class TenhouClient:
             self.game_table.set_personal_info(names_and_levels)
             return True
         # handle authentication message
-        auth_code, rating, new_level = TenhouParser.parse_auth_msg(auth_msg)
-        if not auth_code:
-            self._log("    Authentication code was not received!")
-            return False
+        rating, new_level = TenhouParser.parse_auth_msg(auth_msg)
+        # if not auth_code:
+        #     self._log("    Authentication code was not received!")
+        #     return False
         if new_level:
             self._log('     Achieved a new level --> {}'.format(new_level))
         # send authentication token
-        auth_token = TenhouParser.generate_auth_token(auth_code)
-        self._send('<AUTH val="{}"/>'.format(auth_token))
+        # auth_token = TenhouParser.generate_auth_token(auth_code)
+        # self._send('<AUTH val="{}"/>'.format(auth_token))
         self._send(self._pxr_tag())
         # waiting for confirmation from server
         waiting_count = 0

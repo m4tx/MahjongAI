@@ -18,14 +18,14 @@ class TenhouParser:
 
     @staticmethod
     def parse_auth_msg(msg):
-        rating, auth_code, new_level = '', '', ''
-        if 'auth=' in msg:
-            auth_code = TenhouParser.get_attribute_value(msg, 'auth')
-            if 'PF4=' in msg:
-                rating = TenhouParser.get_attribute_value(msg, 'PF4')
+        rating, new_level = '', ''
+        # if 'auth=' in msg:
+        #     auth_code = TenhouParser.get_attribute_value(msg, 'auth')
+        #     if 'PF4=' in msg:
+        #         rating = TenhouParser.get_attribute_value(msg, 'PF4')
         if 'nintei' in msg:
             new_level = unquote(TenhouParser.get_attribute_value(msg, 'nintei'))
-        return auth_code, rating, new_level
+        return rating, new_level
 
     @staticmethod
     def parse_names_and_levels(msg):
